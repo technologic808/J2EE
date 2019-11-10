@@ -1,12 +1,12 @@
 Day 1
 1. Create a dynamic web application for 
 1.1 index.html
-Welcome mesg
-1st Link --To invoke servlet deployed via annotation
+Welcome message
+1st Link --To invoke Servlet deployed via annotation
 
-2nd Link --To invoke servlet deployed via xml tags
+2nd Link --To invoke Servlet deployed via XML tags
 
-3rd link -- Reading different types of i/ps
+3rd link -- Reading different types of inputs
 (Copy input.html from today's help under WebContent)
 Write a TestInputServlet , to read request parameters sent from the client.
  
