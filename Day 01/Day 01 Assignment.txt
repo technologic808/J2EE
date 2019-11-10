@@ -1,0 +1,26 @@
+Day 1
+1. Create a dynamic web application for 
+1.1 index.html
+Welcome mesg
+1st Link --To invoke servlet deployed via annotation
+
+2nd Link --To invoke servlet deployed via xml tags
+
+3rd link -- Reading different types of i/ps
+(Copy input.html from today's help under WebContent)
+Write a TestInputServlet , to read request parameters sent from the client.
+ 
+
+2. Use my_sql_cmds.txt from today's help.
+Copy my_customers & dac_books table in your DB
+2.1 Create Customer POJO
+2.2 Copy DBUtils
+2.3 Create DAO i/f (ICustomerDao)
+public Customer signIn(String email,String pass) throws Exception
+
+public String signUp(Customer c) throws Exception
+
+3. Write DAO implementation class (CustomerDaoImpl)
+
+4. Test it using main(...) based tester.
+ 

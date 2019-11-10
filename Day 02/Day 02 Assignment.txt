@@ -1,0 +1,16 @@
+Assignement help
+1. Tables --voters(id(int) PK, email unique , password , status(boolean/varchar)
+candidates -- id (int) PK , name , political party , votes
+
+2. Create POJOs
+Voter & Candidate
+
+3. Create VotingDao i/f
+methods
+3.1 Voter authenticateVoter(String em,String pass) throws Exception
+3.2 List<Candidate> getCandidateList() throws Exception
+
+3.3 String incVotesUpdateStatus(int candidateId,int voterId) throws Exception
+
+4. In ListServlet
+List<Candidate> candidates=dao.getCandidateList();
