@@ -1,0 +1,8 @@
+Day5
+Create dynamic web application with the layers (Book and Customers)
+JSP--JB--DAO(DBUtils) -- POJO --DB 
+
+In Voting assignment
+Solve (at the minimum) Voter authentication & if possible Voter registration.
+
+Refer to modified case study for the page flow.

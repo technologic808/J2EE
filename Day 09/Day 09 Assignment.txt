@@ -1,0 +1,28 @@
+
+Day 9
+
+Create a bi directional relationship between Department & Employees.
+
+Department 1 <------>* Employee
+
+Department -- deptId(Integer),name(unique),location(string),emps
+
+Employee --empId, name,salary,Department
+
+Create a DAO layer & testers for the following
+
+1. 
+Create a new department
+	String createNewDeptDepartment d)
+
+2. 
+Hire Emp in a dept.
+	String hireEmp(int deptId,Employee e)
+
+3. 
+Display employees from a specific dept.
+	List<Employee> listEmps(String deptName)
+
+4. 
+Fire employee from a dept
+	String fireEmp(int deptId,int empId);

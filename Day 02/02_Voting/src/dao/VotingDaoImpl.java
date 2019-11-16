@@ -6,13 +6,14 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.util.ArrayList;
+import java.util.HashMap;
 
 import pojos.Candidate;
 import pojos.Voter;
 
 public class VotingDaoImpl implements IVotingDao {
 	private Connection cn;
-	private PreparedStatement pst1, pst2, pst3, pst4;
+	private PreparedStatement pst1, pst2, pst3, pst4, pst5, pst6;
 
 	public void cleanUp() throws Exception {
 		if (pst1 != null)
@@ -23,11 +24,17 @@ public class VotingDaoImpl implements IVotingDao {
 			pst3.close();
 		if (pst4 != null)
 			pst4.close();
+		if (pst5 != null)
+			pst5.close();
+		if (pst6 != null)
+			pst6.close();
 		if (cn != null)
 			cn.close();
 		System.out.println("Voting DAO cleaned up");
 
 	}
+
+
 
 	public VotingDaoImpl() throws Exception {
 		cn = fetchConnection();
@@ -35,7 +42,33 @@ public class VotingDaoImpl implements IVotingDao {
 		pst2 = cn.prepareStatement("select * from candidates");
 		pst3 = cn.prepareStatement("UPDATE candidates SET votes = votes + 1 WHERE id = ?");
 		pst4 = cn.prepareStatement("update voters set v_status = true where id = ?");
+		pst5 = cn.prepareStatement("select * from candidates order by votes desc limit ?");
+		pst6 = cn.prepareStatement("select party, votes from candidates"); 
 
+	}
+	
+	@Override
+	public HashMap<Integer, Candidate> topCandidates(Integer topNo) throws Exception {
+		HashMap<Integer, Candidate> candidates = new HashMap<>();
+		this.pst5.setInt(1, topNo);
+		try (ResultSet rst = pst5.executeQuery()) {
+			while (rst.next()) {
+				candidates.put( rst.getInt("id"), new Candidate(rst.getInt(1), rst.getString(2), rst.getString(3), rst.getInt(4)));
+			}
+		}
+		System.out.println(candidates);
+		return candidates;
+	}
+
+	@Override
+	public HashMap<String, Integer> votesByParty() throws Exception {
+		HashMap<String, Integer> partyVotes = new HashMap<>();
+		try (ResultSet rst = pst6.executeQuery()) {
+				while (rst.next()) {
+					partyVotes.put( rst.getString("party"), rst.getInt("votes"));
+				}
+		}
+		return partyVotes;
 	}
 
 	@Override
@@ -45,7 +78,7 @@ public class VotingDaoImpl implements IVotingDao {
 		pst1.setString(2, password);
 		try (ResultSet rst = pst1.executeQuery()) {
 			if (rst.next())
-				return new Voter(rst.getInt("id"), email, password, rst.getBoolean("v_status"));
+				return new Voter(rst.getInt("id"), email, password, rst.getString("role"), rst.getBoolean("v_status"));
 
 		}
 		return null;

@@ -1,0 +1,3 @@
+
+Day 6
+Start with Voting assignment implemented in JSP--JB--DAO--POJO layers.

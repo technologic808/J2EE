@@ -6,7 +6,8 @@ CREATE TABLE voters (
     id INT PRIMARY KEY,
     v_email VARCHAR(30) UNIQUE,
     v_password VARCHAR(30),
-    v_status boolean
+    v_status BOOLEAN,
+    role VARCHAR(30)
 );
 
 DROP TABLE IF EXISTS candidates;
@@ -18,11 +19,13 @@ CREATE TABLE candidates (
     votes int
 );
 
-insert into voters values (001, 'arnab.goswami@gmail.com', 'pass001', false);
-insert into voters values (002, 'aditya.tadepalli@gmail.com', 'pass002', false);
-insert into voters values (003, 'ansh.sharma@gmail.com', 'pass003', false);
-insert into voters values (004, 'dhruvaa.singh@gmail.com', 'pass004', false);
-insert into voters values (005, 'aarushi.talvar@gmail.com', 'pass005', false);
+insert into voters values (001, 'arnab.goswami@gmail.com', 'pass001', false, 'admin');
+insert into voters values (002, 'aditya.tadepalli@gmail.com', 'pass002', false, 'voter');
+insert into voters values (003, 'ansh.sharma@gmail.com', 'pass003', false, 'voter');
+insert into voters values (004, 'dhruvaa.singh@gmail.com', 'pass004', false, 'voter');
+insert into voters values (005, 'aarushi.talvar@gmail.com', 'pass005', false, 'voter');
+insert into voters values (006, 'elephant.longtrunk@gmail.com', 'pass006', false, 'candidate');
+insert into voters values (007, 'donkey.thiccass@gmail.com', 'pass007', false, 'candidate');
 
 insert into candidates values (01, 'Elephant', 'Republican', 00);
 insert into candidates values (02, 'Donkey', 'Democratic', 00);

@@ -1,0 +1,3 @@
+Day 10
+Integrate web application with hibernate.
+(voting assignment)

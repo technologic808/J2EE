@@ -1,0 +1,27 @@
+Day 8
+1.
+
+Refer to vendor management case study.
+Copy your day7_lab to day8_lab (hibernate project)
+
+1.1 
+
+Create Vendor POJO
+	id,name,email,password,city,phone,reg amount,reg date (LocalDate)
+
+Add JPA annotations.
+
+Add mapping entry in config file.
+
+1.2 
+
+DAO i/f (IVendorDao)
+	1. String registerVendor(Vendor v)
+	2. Vendor getDetails(int id);
+	3. List all vendor details
+		List<Vendor> getAllVendors()
+	4. List all vendors from specified city after specific reg date
+		List<Vendor> getSelectedVendors(String city,LocalDate dt)
+	5. String updateVendorDetails(int vid,String newCity,String newPhone)
+	6. Un subscribe vendor
+		String deleteVendorDetails(int v_id)

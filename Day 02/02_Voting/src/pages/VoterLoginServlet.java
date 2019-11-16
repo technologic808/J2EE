@@ -72,11 +72,23 @@ public class VoterLoginServlet extends HttpServlet {
 				hs.setAttribute("dao", dao);
 
 				System.out.println("Voter status is " + v.getV_status());
-				// Check if the voter has already voted
-				if (v.getV_status())
+
+				System.out.println(v);
+				// check if voter is admin
+
+				if (v.getRole().equals("admin")) {
+					System.out.println("is role admin? yes");
+					response.sendRedirect("admin");
+				} else if (v.getV_status())
 					response.sendRedirect("thanks_for_voting.html");
 				else // Redirect the voter to the voting page, in the NEXT request
+				{
+					System.out.println("is role admin? no");
 					response.sendRedirect("vote");
+				}
+
+				// Check if the voter has already voted
+
 			}
 		} catch (Exception e) {
 			throw new ServletException("Error in do-post : " + getClass().getName(), e);
