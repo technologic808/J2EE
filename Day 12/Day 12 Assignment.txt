@@ -1,0 +1,2 @@
+Day 12
+MUST Create Spring MVC web application as discussed , for testing MVC flow.
