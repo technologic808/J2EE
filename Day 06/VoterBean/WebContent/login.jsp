@@ -20,6 +20,7 @@
 			
 			<tr>
 				<td><input formmethod="post" type="submit" value="Login"  /></td>
+				<td><input formmethod="post" type="submit" value="Register"  formaction = "register.jsp"/></td>
 			</tr>
 		</table>
 	</form>

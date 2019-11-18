@@ -10,6 +10,9 @@ public interface IVotingDao {
 	// Authenticates voters
 	public Voter authenticateVoter(String email, String password) throws Exception;
 	
+	// Registers voters
+	public Voter registerVoter(String email, String password) throws Exception;
+	
 	// Updates voting status
 	String updateVoterStatus(Voter v) throws Exception;
 	

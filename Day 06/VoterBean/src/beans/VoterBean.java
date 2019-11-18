@@ -88,5 +88,35 @@ public class VoterBean {
 		message = dao.updateVoterStatus(details);
 		return "";
 	}
+	
+	// 3. Register Voter 
+	public String registerVoter() {
+		// Prints debugging message to console
+		System.out.println("Register voter " + email + " " + password);
+
+		try {
+			// Authenticates and stores voter details in data member
+			details = dao.registerVoter(email, password);
+
+			// Updates login status
+			status = details.getRole() + ", " + details.getV_email() + ", Registration Succcessful";
+
+			// Checks if user is voter
+			if (details.getRole().equals("voter")) {
+					message = "You have been registered";
+					// returns jsp page name to navigate to
+					return "login";
+			}
+		} catch (Exception e) {
+			System.out.println("Error: " + e);
+
+			// Updates message for failed login
+			message = "Registration Failed";
+			// returns jsp page name to navigate to
+			return "login";
+		}
+		// returns login page by default
+		return "login";		
+	}
 
 }

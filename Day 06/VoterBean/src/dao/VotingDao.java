@@ -13,7 +13,7 @@ import pojos.Voter;
 
 public class VotingDao implements IVotingDao {
 	private Connection cn;
-	private PreparedStatement pst1, pst2, pst3, pst4, pst5, pst6;
+	private PreparedStatement pst1, pst2, pst3, pst4, pst5, pst6, pst7;
 
 	public void cleanUp() throws Exception {
 		if (pst1 != null)
@@ -28,13 +28,13 @@ public class VotingDao implements IVotingDao {
 			pst5.close();
 		if (pst6 != null)
 			pst6.close();
+		if (pst7 != null)
+			pst7.close();
 		if (cn != null)
 			cn.close();
 		System.out.println("Voting DAO cleaned up");
 
 	}
-
-
 
 	public VotingDao() throws Exception {
 		cn = fetchConnection();
@@ -43,10 +43,10 @@ public class VotingDao implements IVotingDao {
 		pst3 = cn.prepareStatement("UPDATE candidates SET votes = votes + 1 WHERE id = ?");
 		pst4 = cn.prepareStatement("update voters set v_status = true where id = ?");
 		pst5 = cn.prepareStatement("select * from candidates order by votes desc limit ?");
-		pst6 = cn.prepareStatement("select party, votes from candidates"); 
-
+		pst6 = cn.prepareStatement("select party, votes from candidates");
+		pst7 = cn.prepareStatement(
+				"insert into voters (v_email, v_password, v_status, `role`) values (?, ?, false, 'voter')");
 	}
-	
 
 	@Override
 	public Voter authenticateVoter(String email, String password) throws Exception {
@@ -60,25 +60,41 @@ public class VotingDao implements IVotingDao {
 		}
 		return null;
 	}
-	
+
+	@Override
+	public Voter registerVoter(String email, String password) throws Exception {
+		// Sets in parameters
+		pst7.setString(1, email);
+		pst7.setString(2, password);
+		pst1.setString(1, email);
+		pst1.setString(2, password);
+		int rstint = 0;
+		rstint = pst7.executeUpdate();
+		if (rstint != 0) {
+			ResultSet rst = pst1.executeQuery();
+			return new Voter(rst.getInt("id"), email, password, rst.getString("role"), rst.getBoolean("v_status"));
+		} else
+			return null;
+	}
+
 	// Returns list of candidates with maximum votes
 	@Override
 	public List<Candidate> maxVotesCandidates() throws Exception {
-		
+
 		// Create empty list
 		List<Candidate> candidates = new ArrayList<>();
 		this.pst5.setInt(1, 1); // Set parameter to the number of top candidates to return
-		
+
 		// Generates list by executing prepared statements and accessing the resultset
 		try (ResultSet rst = pst5.executeQuery()) {
 			while (rst.next()) {
 				candidates.add(new Candidate(rst.getInt(1), rst.getString(2), rst.getString(3), rst.getInt(4)));
 			}
 		}
-		
+
 		// Prints list for debugging
 		System.out.println(candidates);
-		
+
 		// Returns list
 		return candidates;
 	}
@@ -94,20 +110,17 @@ public class VotingDao implements IVotingDao {
 		return candidates;
 	}
 
-
 	@Override
 	public String updateVoterStatus(Voter v) throws Exception {
 		pst4.setInt(1, v.getId());
 		System.out.println(pst4.toString());
 		Integer rowsAffectedVoterStatusChanged = pst4.executeUpdate();
-		System.out.println("rowsAffectedVoterStatusChanged " + rowsAffectedVoterStatusChanged );
+		System.out.println("rowsAffectedVoterStatusChanged " + rowsAffectedVoterStatusChanged);
 		if (rowsAffectedVoterStatusChanged > 0)
 			return "Voter status updated";
 		else
 			return "Voter status not updated";
 	}
-
-
 
 	@Override
 	public String incrementVotes(Integer candidateId) throws Exception {
@@ -120,7 +133,5 @@ public class VotingDao implements IVotingDao {
 		else
 			return "Candidate status not updated";
 	}
-
-	
 
 }
