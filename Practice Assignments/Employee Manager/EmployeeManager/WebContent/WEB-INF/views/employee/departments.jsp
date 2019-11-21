@@ -1,4 +1,5 @@
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
+<%@ taglib uri="http://www.springframework.org/tags" prefix="spring" %>
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
 	pageEncoding="ISO-8859-1"%>
 <!DOCTYPE html>
@@ -16,12 +17,10 @@
 	</tr>
 		<c:forEach var="department" items="${requestScope.list}">
 			<tr>
-				<td>${department.deptName}</td>
+				<td><a href="<spring:url value='hire?deptId=${department.deptId}'/>">${department.deptName}</a></td>
 				<td>${department.location}</td>
 				<td>${department.strength}</td>
-				<%-- 
-			<td><a href="<spring:url value='/admin/update?vid=${v.id}'/>">Update</a></td>
-			<td><a href="<spring:url value='/admin/delete?vid=${v.id}'/>">Delete</a></td> --%>
+				
 
 			</tr>
 		</c:forEach>

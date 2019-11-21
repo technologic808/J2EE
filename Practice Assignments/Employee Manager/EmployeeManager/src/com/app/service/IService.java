@@ -12,7 +12,7 @@ public interface IService {
 	public List<Department> getDepartmentList() throws Exception;
 
 	// Hires employee
-	public String hireEmployee(Employee employee);
+	public String hireEmployee(Employee employee, Integer deptId);
 
 	// Business logic
 

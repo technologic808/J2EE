@@ -3,7 +3,7 @@
         <wb-resource deploy-path="/" source-path="/WebContent" tag="defaultRootSource"/>
         <wb-resource deploy-path="/WEB-INF/classes" source-path="/src"/>
         <wb-resource deploy-path="/WEB-INF/classes" source-path="/res"/>
-        <property name="context-root" value="lab1practice"/>
         <property name="java-output-path" value="/EmployeeManager/build/classes"/>
+        <property name="context-root" value="emp_man"/>
     </wb-module>
 </project-modules>

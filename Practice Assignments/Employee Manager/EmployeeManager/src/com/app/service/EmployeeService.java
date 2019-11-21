@@ -44,9 +44,9 @@ public class EmployeeService implements IService {
 	}
 
 	@Override
-	public String hireEmployee(Employee employee) {
+	public String hireEmployee(Employee employee, Integer deptId) {
 		System.out.println("in hire emp service method");
-		return dao.hireEmployee(employee);
+		return dao.hireEmployee(employee, deptId);
 	}
 
 }

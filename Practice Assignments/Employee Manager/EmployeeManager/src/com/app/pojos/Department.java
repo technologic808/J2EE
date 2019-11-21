@@ -81,6 +81,14 @@ public class Department {
 		this.employees = employees;
 	}
 
+	// Convenience Methods
+	public void addEmployee(Employee employee) {
+		if (employees == null)
+			employees = new ArrayList<Employee>();
+		employees.add(employee);
+		employee.setDepartment(this);
+	}
+
 	@Override
 	public String toString() {
 		return "Department [deptId=" + deptId + ", strength=" + strength + ", deptName=" + deptName + ", location="

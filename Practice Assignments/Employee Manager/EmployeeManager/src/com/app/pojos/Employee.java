@@ -29,8 +29,7 @@ public class Employee {
 		System.out.println("In Employee POJO constructor");
 	}
 
-	public Employee(Department department, String name, Double salary, LocalDate dob) {
-		this.department = department;
+	public Employee(String name, Double salary, LocalDate dob) {
 		this.name = name;
 		this.salary = salary;
 		this.dob = dob;
