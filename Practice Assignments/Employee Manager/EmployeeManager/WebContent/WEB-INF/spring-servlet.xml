@@ -7,7 +7,7 @@
 		http://www.springframework.org/schema/mvc http://www.springframework.org/schema/mvc/spring-mvc-4.3.xsd">
 
 	<context:annotation-config />
-	<context:component-scan base-package="com.app"/>
+	<context:component-scan base-package="com.acts"/>
 	<!-- to enable annotation based MVC support -->
 	<mvc:annotation-driven/>
 	<!-- configure view resolver bean for auto transalation -->

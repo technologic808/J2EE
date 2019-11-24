@@ -10,7 +10,7 @@
 </head>
 <body>
 <h3>Student Admission Form</h3>
-	<spring:form method="post" action="courses/admission" modelAttribute="student">
+	<spring:form method="post" action="admission" modelAttribute="student">
 	<input type="text" value="${param.cId}" name = "cId" hidden="true"/>
 		<table style="background-color: cyan; margin: auto;">
 			<tr>
@@ -23,7 +23,7 @@
 			</tr>
 			<tr>
 				<td>Date of Birth</td>
-				<td><spring:input path="dob" /></td>
+				<td><input name="dob"  type="date"/></td>
 			</tr>
 			<tr>
 				<td>CGPA</td>

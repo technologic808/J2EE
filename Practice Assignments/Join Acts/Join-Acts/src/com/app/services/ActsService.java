@@ -1,4 +1,4 @@
-package com.acts.services;
+package com.app.services;
 
 import java.util.List;
 
@@ -6,9 +6,9 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
-import com.acts.dao.IActsDao;
-import com.acts.pojos.Course;
-import com.acts.pojos.Student;
+import com.app.dao.IActsDao;
+import com.app.pojos.Course;
+import com.app.pojos.Student;
 
 @Service
 @Transactional
@@ -24,8 +24,7 @@ public class ActsService implements IActsService {
 
 	@Override
 	public List<Course> getCourseList() {
-		dao.getCourseList();
-		return null;
+		return dao.getCourseList();
 	}
 
 	@Override

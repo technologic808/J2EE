@@ -1,9 +1,9 @@
-package com.acts.dao;
+package com.app.dao;
 
 import java.util.List;
 
-import com.acts.pojos.Course;
-import com.acts.pojos.Student;
+import com.app.pojos.Course;
+import com.app.pojos.Student;
 
 public interface IActsDao {
 

@@ -1,6 +1,6 @@
-package com.acts.pojos;
+package com.app.pojos;
 
-import java.time.LocalDate;
+import java.util.Date;
 
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -8,6 +8,10 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.ManyToOne;
 import javax.persistence.Table;
+import javax.persistence.Temporal;
+import javax.persistence.TemporalType;
+
+import org.springframework.format.annotation.DateTimeFormat;
 
 @Entity
 @Table(name = "students")
@@ -18,7 +22,11 @@ public class Student {
 	private Integer sId;
 	private String studentName;
 	private String address;
-	private LocalDate dob;
+
+	@Temporal(TemporalType.DATE)
+	@DateTimeFormat(pattern = "yyyy-MM-dd")
+	private Date dob;
+	
 	private Double cgpa;
 
 	// ManyToOne mapped element
@@ -30,10 +38,9 @@ public class Student {
 		this.studentName = "Enter Name";
 	}
 
-	public Student(String name, String address, LocalDate dob, Double cgpa) {
+	public Student(String name, String address, Double cgpa) {
 		this.studentName = name;
 		this.address = address;
-		this.dob = dob;
 		this.cgpa = cgpa;
 	}
 
@@ -61,11 +68,11 @@ public class Student {
 		this.address = address;
 	}
 
-	public LocalDate getDob() {
+	public Date getDob() {
 		return dob;
 	}
 
-	public void setDob(LocalDate dob) {
+	public void setDob(Date dob) {
 		this.dob = dob;
 	}
 

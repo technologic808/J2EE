@@ -1,4 +1,4 @@
-package com.acts.dao;
+package com.app.dao;
 
 import java.util.List;
 
@@ -6,8 +6,8 @@ import org.hibernate.SessionFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
-import com.acts.pojos.Course;
-import com.acts.pojos.Student;
+import com.app.pojos.Course;
+import com.app.pojos.Student;
 
 @Repository
 public class ActsDao implements IActsDao {

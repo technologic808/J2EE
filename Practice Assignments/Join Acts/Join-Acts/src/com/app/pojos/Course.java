@@ -1,4 +1,4 @@
-package com.acts.pojos;
+package com.app.pojos;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -22,10 +22,26 @@ public class Course {
 
 	// One to many mapped field
 	@OneToMany(mappedBy = "course", cascade = CascadeType.ALL, orphanRemoval = true)
-	private List<Student> students;
+	private List<Student> students = new ArrayList<>();
 
 	public Course() {
 		System.out.println("In Course POJO CTOR");
+	}
+
+	public Integer getcId() {
+		return cId;
+	}
+
+	public void setcId(Integer cId) {
+		this.cId = cId;
+	}
+
+	public String getCourseName() {
+		return courseName;
+	}
+
+	public void setCourseName(String courseName) {
+		this.courseName = courseName;
 	}
 
 	public Course(Integer cId, String courseName) {
@@ -48,8 +64,6 @@ public class Course {
 
 	// Convenience method to add student to course
 	public void addStudent(Student student) {
-		if (student == null)
-			students = new ArrayList<Student>();
 		students.add(student);
 		student.setCourse(this);
 	}
