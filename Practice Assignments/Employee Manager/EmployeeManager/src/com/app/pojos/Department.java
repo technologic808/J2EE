@@ -83,10 +83,9 @@ public class Department {
 
 	// Convenience Methods
 	public void addEmployee(Employee employee) {
-		if (employees == null)
-			employees = new ArrayList<Employee>();
 		employees.add(employee);
 		employee.setDepartment(this);
+		this.setStrength(this.getStrength() + 1);
 	}
 
 	@Override

@@ -40,18 +40,10 @@ public class Dao implements IDao {
 
 	@Override
 	public String hireEmployee(Employee employee, Integer deptId) {
-
 		System.out.println("in hire emp dao method");
 		Department department = sf.getCurrentSession().get(Department.class, deptId);
-//		employee.setDepartment(department); 
-		department.addEmployee(employee); // Aditya : "Believe me!! This works!!" And it did...
-		department.setStrength(department.getStrength() + 1);
+		department.addEmployee(employee); 
 		sf.getCurrentSession().save(department);
-//
-//		if (identifier != null)
-//			return "Employee hired successfully";
-//		else
-//			return "Employee not hired";
 		return null;
 	}
 
